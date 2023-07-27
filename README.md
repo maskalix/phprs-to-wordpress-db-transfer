@@ -1,5 +1,5 @@
 # phpRS to WordPress DB Transfer
-<h1>🇨🇿 <b>CZ</b></h1>
+<h1>🇨🇿 <b>Česky</b></h1>
 <p>Převod/přenos příspěvků, uživatelů a tagů z PHPRS do WordPressu (SQL skript)</p>
 <b>Vše funguje jednoduše skrze SQL skript.</b>
 <br>
@@ -8,7 +8,7 @@
   <li>pokud se jmenují databáze jinak, pomocí nástroje (př. Visual Studio Code)</li>
   <li>přepiš všechny hodnoty "archiv" a "staryweb" na hodnoty odpovídající potřebám</li>
 </ul>
-<h1>🇬🇧 <b>EN</b></h1>
+<h1>🇬🇧 <b>English</b></h1>
 <p>Convert/transfer posts, users and tags from PHPRS to WordPress (SQL script)</p>
 <b>Everything works simply through an SQL script:</b>
 <br>
