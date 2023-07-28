@@ -9,6 +9,7 @@
   <li>přepiš všechny hodnoty "archiv" a "staryweb" na hodnoty odpovídající potřebám</li>
 </ul>
 <p>Následně doporučuji použít WordPress plugin "Permalink Manager Lite", který by měl opravit odkazy článků, kdyby se s nimi vycházeli chyby.</p>
+<p><b>NUTNO SPUSTIT V NOVÉ DATABÁZI (WORDPRESS)</b></p>
 <h1>🇬🇧 <b>English</b></h1>
 <p>Convert/transfer posts, users and tags from PHPRS to WordPress (SQL script)</p>
 <b>Everything works simply through an SQL script:</b>
@@ -19,4 +20,4 @@
   <li>rewrite all "archive" and "staryweb" values to values corresponding to needs</li>
 </ul>
 <p>Next, I recommend using the WordPress plugin "Permalink Manager Lite", which should fix the article links if there are any errors.</p>
-
+<p><b>MUST BE RUN IN A NEW DATABASE (WORDPRESS)</b></p>
