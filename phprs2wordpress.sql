@@ -26,7 +26,7 @@ SELECT
     DATE_SUB(datum, INTERVAL 2 HOUR) AS post_date,
     DATE_SUB(datum, INTERVAL 2 HOUR) AS post_date_gmt,
     wp_users.ID AS post_author,
-    text AS post_content,
+    CONCAT(titulek, '\n', text) AS post_content,
     titulek AS post_title,
     uvod AS post_excerpt,
     titulek AS post_name
