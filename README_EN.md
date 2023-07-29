@@ -19,7 +19,8 @@ This script facilitates migrating data from an old PHPRS database to a new WordP
      - `@import_posts`
      - `@import_tags`
      - `@import_comments`
-     - `@import_files` requires "phpRS Soubory" plugin - put the files into `wp-content/storage` 
+     - `@import_files` requires "phpRS Soubory" plugin - put the files into `wp-content/storage`
+     - `@import_gallery` requires the plugin "phpRS Gallery" - **upload files to folder** `wp-content/gallery`
 
 3. **Executing the Migration:**
    - Copy the script content.
