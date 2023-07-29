@@ -1,4 +1,4 @@
-# PHPRS to WordPress DB Transfer (SQL Script)
+# phpRS to WordPress
 
 ## Description:
 This script facilitates migrating data from an old PHPRS database to a new WordPress database. It allows selective transfer of users, posts, tags, comments, and files. The process is designed for a fresh WordPress installation.
@@ -19,7 +19,7 @@ This script facilitates migrating data from an old PHPRS database to a new WordP
      - `@import_posts`
      - `@import_tags`
      - `@import_comments`
-     - `@import_files` requires "phpRS Soubory" plugin
+     - `@import_files` requires "phpRS Soubory" plugin - put the files into `wp-content/storage` 
 
 3. **Executing the Migration:**
    - Copy the script content.
