@@ -10,11 +10,12 @@
 -- pokud se jmenují databáze jinak, pomocí nástroje (př. Visual Studio Code) přepiš všechny hodnoty "phprs" a "archiv" na hodnoty odpovídající potřebám
 -- Co chceš přenést? (nespouštět skript na několikrát, vždy na čistou instalaci/stylem jednou a víckrát ne :D)
 -- (1 = ano, 0 = ne)
-SET @import_users = 1;      -- Uživatelé 
-SET @import_posts = 1;      -- Články 
-SET @import_tags = 1;       -- Štítky 
+SET @import_users = 0;      -- Uživatelé 
+SET @import_posts = 0;      -- Články 
+SET @import_tags = 0;       -- Štítky 
 SET @import_comments = 0;   -- Komentáře 
-SET @import_files = 1;      -- Soubory (nutno nainstalovat také plugin "phpRS Soubory")
+SET @import_files = 0;      -- Soubory (nutno nainstalovat také plugin "phpRS Soubory")
+SET @import_gallery = 1;    -- Galerie obrázků (nutno nainstalovat také plugin "phpRS Galerie")
 
 SET SQL_MODE = '';
 ALTER TABLE `wp_posts` CHANGE `post_date` `post_date` DATETIME  NOT NULL  DEFAULT '1970-01-01 00:00:00';
@@ -115,6 +116,56 @@ WHERE koncovka <> '-' AND @import_files = 1;
 -- Reset the AUTO_INCREMENT value to start from 1
 ALTER TABLE archiv.wp_files AUTO_INCREMENT = 1;
 
+
+-- Create wp_gallery table
+CREATE TABLE archiv.wp_gallery (
+    gallery_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    gallery_title VARCHAR(255) NOT NULL,
+    gallery_description TEXT,
+    gallery_zalozeni DATE
+);
+
+-- Create wp_media table
+CREATE TABLE archiv.wp_media (
+    media_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    media_gallery_id INT NOT NULL,
+    media_file VARCHAR(255) NOT NULL,
+    media_caption VARCHAR(255),
+    media_description TEXT,
+    media_width INT,
+    media_height INT,
+    media_size INT,
+    ID INT -- New column for unique ID from 1 to up
+);
+
+-- Transfer data to wp_gallery table
+INSERT INTO archiv.wp_gallery (gallery_id, gallery_title, gallery_description, gallery_zalozeni)
+SELECT gallery_id, gallery_title, gallery_description, gallery_zalozeni
+FROM phprs.rs_gallery;
+
+-- Set @import_gallery to 1 to enable ID generation or set it to 0 to disable
+SET @import_gallery = 1;
+
+-- Transfer data to wp_media table and set the new ID column (conditionally)
+SET @row_number = 0;
+INSERT INTO archiv.wp_media (media_gallery_id, media_file, media_caption, media_description, media_width, media_height, media_size, ID)
+SELECT 
+    media_gallery_id, 
+    media_file, 
+    media_caption, 
+    media_description, 
+    media_width, 
+    media_height, 
+    media_size, 
+    IF(@import_gallery = 1, (@row_number := @row_number + 1), NULL) AS ID
+FROM phprs.rs_media
+WHERE @import_gallery = 1;
+
+-- Reset the auto-increment value for wp_gallery table
+ALTER TABLE archiv.wp_gallery AUTO_INCREMENT = 1;
+
+-- Reset the auto-increment value for wp_media table
+ALTER TABLE archiv.wp_media AUTO_INCREMENT = 1;
 
 -- Step 8: Rewrite without diacritics
 -- Drop the existing function (if it already exists)
