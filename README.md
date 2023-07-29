@@ -20,6 +20,7 @@ Tento skript usnadňuje migraci dat ze staré databáze PHPRS do nové databáze
      - `@import_tags`
      - `@import_comments`
      - `@import_files` vyžaduje plugin "phpRS Soubory" - **soubory nahrát do složky** `wp-content/storage`
+     - `@import_gallery` vyžaduje plugin "phpRS Galerie" - **soubory nahrát do složky** `wp-content/gallery`
 
 3. **Provedení migrace:**
    - Zkopírujte obsah skriptu.
