@@ -1,16 +1,16 @@
-# PHPRS na WordPress DB Transfer (SQL Script)
+# phpRS to WordPress
 
-## Popis: Založení a spuštění systému WordPress v České republice:
-Tento skript usnadňuje migraci dat ze staré databáze PHPRS do nové databáze WordPress. Umožňuje selektivní přenos uživatelů, příspěvků, značek, komentářů a souborů. Proces je určen pro čerstvou instalaci systému WordPress.
+## Popis:
+Tento skript usnadňuje migraci dat ze staré databáze PHPRS do nové databáze WordPress. Umožňuje selektivní přenos uživatelů, příspěvků, ětítků, komentářů a souborů. Proces je určen pro čerstvou instalaci systému WordPress.
 
 ## Jak používat: V případě potřeby je možné použít tento postup:
 
 1. **Předpoklady:**
    - Připravte si čistou instalaci WordPressu s prázdnou databází.
-   - Volitelně nainstalujte doplněk "phpRS Soubory" pro import souborů.
+   - Volitelně nainstalujte plugin "phpRS Soubory" pro import souborů.
    - Přejmenujte názvy DB:
      - Wordpress DB = "archiv"
-     - DB phpRS = "phprs"
+     - phpRS DB = "phprs"
 
 2. **Nastavení proměnných:**
    - Otevřete soubor "phprs_to_wp_migration.sql" ve svém SQL klientu (např. Visual Studio Code, phpMyAdmin).
@@ -19,7 +19,7 @@ Tento skript usnadňuje migraci dat ze staré databáze PHPRS do nové databáze
      - `@import_posts`
      - `@import_tags`
      - `@import_comments`
-     - `@import_files` vyžaduje zásuvný modul "phpRS Soubory".
+     - `@import_files` vyžaduje plugin "phpRS Soubory" - **soubory nahrát do složky** `wp-content/storage`
 
 3. **Provedení migrace:**
    - Zkopírujte obsah skriptu.
@@ -27,16 +27,15 @@ Tento skript usnadňuje migraci dat ze staré databáze PHPRS do nové databáze
    - Spusťte dotaz pro zahájení procesu migrace.
 
 4. **Kroky po migraci:**
-   - Skript zpracovává transformaci dat, import značek a komentářů, pokud jsou zvoleny.
-   - Uživatelé, příspěvky a soubory ze staré databáze PHPRS budou k dispozici v nové databázi WordPress.
-   - Vlastní funkce "RemoveDiacritics" zajistí správné generování slugů.
-   - Volitelně: nainstalujte zásuvný modul "Permalink Manager Lite" a použijte nástroj pro opravu odkazů na příspěvky.
+   - Skript zpracovává přenos článků, ětítků, uživatelů, souborů a komentářů, pokud jsou zvoleny.
+   - Volitelné: "RemoveDiacritics" zajistí správné generování slugů.
+   - Volitelně: nainstalujte zásuvný plugin "Permalink Manager Lite" a použijte nástroj pro opravu odkazů u příspěvků.
 
 ## Důležité poznámky:
 - Před spuštěním migračního skriptu zálohujte databázi WordPress, abyste zabránili ztrátě dat.
 - Ujistěte se, že práva SQL vašeho serveru umožňují vytváření funkcí a provádění dotazů.
 
-## Autor: Mgr:
+## Autor:
 Vytvořil Martin J Skalický v roce 2023.
 GitHub: [maskalix/phprs-to-wordpress-db-transfer](https://github.com/maskalix/phprs-to-wordpress-db-transfer/)
 
