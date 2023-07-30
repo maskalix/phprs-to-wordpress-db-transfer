@@ -138,13 +138,11 @@ CREATE TABLE archiv.wp_media (
     ID INT -- New column for unique ID from 1 to up
 );
 
--- Transfer data to wp_gallery table
+-- Transfer data to wp_gallery table (excluding rows without gallery title)
 INSERT INTO archiv.wp_gallery (gallery_id, gallery_title, gallery_description, gallery_zalozeni)
 SELECT gallery_id, gallery_title, gallery_description, gallery_zalozeni
-FROM phprs.rs_gallery;
-
--- Set @import_gallery to 1 to enable ID generation or set it to 0 to disable
-SET @import_gallery = 1;
+FROM phprs.rs_gallery
+WHERE gallery_title IS NOT NULL AND TRIM(gallery_title) <> '';
 
 -- Transfer data to wp_media table and set the new ID column (conditionally)
 SET @row_number = 0;
@@ -157,9 +155,9 @@ SELECT
     media_width, 
     media_height, 
     media_size, 
-    IF(@import_gallery = 1, (@row_number := @row_number + 1), NULL) AS ID
+    IF(@import_gallery = 1 AND media_gallery_id IN (SELECT gallery_id FROM archiv.wp_gallery), (@row_number := @row_number + 1), NULL) AS ID
 FROM phprs.rs_media
-WHERE @import_gallery = 1;
+WHERE @import_gallery = 1 AND media_gallery_id IN (SELECT gallery_id FROM archiv.wp_gallery);
 
 -- Reset the auto-increment value for wp_gallery table
 ALTER TABLE archiv.wp_gallery AUTO_INCREMENT = 1;
