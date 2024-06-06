@@ -1,3 +1,4 @@
+![Copy of Copy of Copy of Copy of PressLine  LIGHT (1)](https://github.com/maskalix/phprs-to-wordpress-db-transfer/assets/46690360/305f848b-bd79-4d88-98b2-d49cb7bdf217)
 # phpRS to WordPress
 
 ## Popis:
